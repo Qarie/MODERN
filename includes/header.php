@@ -1,3 +1,18 @@
+<?php
+
+$DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASSWORD = '';
+$DATABASE_NAME = 'ddibastats_db';
+// Try and connect using the info above.
+$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASSWORD, $DATABASE_NAME);
+
+$id = $_SESSION['id'];
+$sql = mysqli_query($con, "SELECT * FROM accounts where id='$id'");
+$result = mysqli_fetch_array($sql);
+?>
+
+
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="sm-hover" data-sidebar-image="none">
 
@@ -431,14 +446,24 @@
                                 <span class="d-flex align-items-center">
                                     <img class="rounded-circle header-profile-user" src="../assets/images/users/avatar-1.jpg" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
-                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Anna Adame</span>
-                                        <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?= $result['name'];?></span>
+                                        <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">
+                                            <?php
+                                         $role=$result['role'];
+                                         
+                                         if ($role == 1) {
+                                             echo "Administrator";
+                                         } else {
+                                             echo "User";
+                                         }
+                                         
+                                         ?></span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome Anna!</h6>
+                                <h6 class="dropdown-header">Welcome <?= $result['name'];?>!</h6>
                                 <a class="dropdown-item" href="pages-profile.php"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Profile</span></a>                                
                                 <a class="dropdown-item" href="../pages/logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
                             </div>

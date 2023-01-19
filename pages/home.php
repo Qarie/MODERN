@@ -1,5 +1,21 @@
+<?php include "config.php"; ?>
 
-<?php include "../includes/header.php";?>
+<?php
+
+$DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASSWORD = '';
+$DATABASE_NAME = 'ddibastats_db';
+// Try and connect using the info above.
+$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASSWORD, $DATABASE_NAME);
+
+$ids = $_SESSION['id'];
+$sql1 = mysqli_query($con, "SELECT * FROM accounts where id='$ids'");
+$result1 = mysqli_fetch_array($sql1);
+$role = $result1['role'];
+?>
+
+<?php include "../includes/header.php"; ?>
 <!-- ========== App Menu ========== -->
 <?php include "../includes/sidebar.php"; ?>
 <!-- Left Sidebar End -->
@@ -39,12 +55,8 @@
                         <div class="row mb-3 pb-1">
                             <div class="col-12">
                                 <div class="d-flex align-items-lg-center flex-lg-row flex-column">
-                                    <div class="flex-grow-1">
-                                        <h4 class="fs-16 mb-1">Good Morning, Anna!</h4>
-                                        <p class="text-muted mb-0">Here's what's happening with your store
-                                            today.</p>
-                                    </div>
-                                    <div class="mt-3 mt-lg-0">
+
+                                    <div class="mt-3 mt-lg-0 ">
                                         <form action="javascript:void(0);">
                                             <div class="row g-3 mb-0 align-items-center">
                                                 <div class="col-sm-auto">
@@ -55,16 +67,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!--end col-->
-                                                <div class="col-auto">
-                                                    <button type="button" class="btn btn-soft-success"><i class="ri-add-circle-line align-middle me-1"></i>
-                                                        Add Product</button>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-auto">
-                                                    <button type="button" class="btn btn-soft-info btn-icon waves-effect waves-light layout-rightside-btn"><i class="ri-pulse-line"></i></button>
-                                                </div>
-                                                <!--end col-->
+
+
                                             </div>
                                             <!--end row-->
                                         </form>
@@ -76,32 +80,31 @@
                         <!--end row-->
 
                         <div class="row">
-                            <div class="col-xl-3 col-md-6">
+                            <div class="col-xl-3 col-md-4">
                                 <!-- card -->
                                 <div class="card card-animate">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center">
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                    Total Earnings</p>
+                                                    Total Players</p>
                                             </div>
-                                            <div class="flex-shrink-0">
-                                                <h5 class="text-success fs-14 mb-0">
-                                                    <i class="ri-arrow-right-up-line fs-13 align-middle"></i>
-                                                    +16.24 %
-                                                </h5>
-                                            </div>
+
                                         </div>
                                         <div class="d-flex align-items-end justify-content-between mt-4">
                                             <div>
-                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value" data-target="559.25">0</span>k
+                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="<?php
+                                                                                                                                            $query = mysqli_query($con, "select * from players");
+                                                                                                                                            $total = mysqli_num_rows($query);
+                                                                                                                                            echo $total;
+
+                                                                                                                                            ?>">0</span>
                                                 </h4>
-                                                <a href="" class="text-decoration-underline text-muted">View net
-                                                    earnings</a>
+                                                <a href="players.php" class="text-decoration-underline text-muted">Players</a>
                                             </div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-soft-success rounded fs-3">
-                                                    <i class="bx bx-dollar-circle text-success"></i>
+                                                    <i class="bx bx-user-circle text-success"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -109,31 +112,30 @@
                                 </div><!-- end card -->
                             </div><!-- end col -->
 
-                            <div class="col-xl-3 col-md-6">
+                            <div class="col-xl-3 col-md-4">
                                 <!-- card -->
                                 <div class="card card-animate">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center">
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                    Orders</p>
+                                                    Total Coaches</p>
                                             </div>
-                                            <div class="flex-shrink-0">
-                                                <h5 class="text-danger fs-14 mb-0">
-                                                    <i class="ri-arrow-right-down-line fs-13 align-middle"></i>
-                                                    -3.57 %
-                                                </h5>
-                                            </div>
+
                                         </div>
                                         <div class="d-flex align-items-end justify-content-between mt-4">
                                             <div>
-                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="36894">0</span></h4>
-                                                <a href="" class="text-decoration-underline text-muted">View all
-                                                    orders</a>
+                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="<?php
+                                                                                                                                            $query = mysqli_query($con, "select * from coaches");
+                                                                                                                                            $total = mysqli_num_rows($query);
+                                                                                                                                            echo $total;
+
+                                                                                                                                            ?>">0</span></h4>
+                                                <a href="coaches.php" class="text-decoration-underline text-muted">Coaches</a>
                                             </div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-soft-info rounded fs-3">
-                                                    <i class="bx bx-shopping-bag text-info"></i>
+                                                    <i class="bx bx-user-circle text-info"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -141,28 +143,27 @@
                                 </div><!-- end card -->
                             </div><!-- end col -->
 
-                            <div class="col-xl-3 col-md-6">
+                            <div class="col-xl-3 col-md-4">
                                 <!-- card -->
                                 <div class="card card-animate">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center">
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                    Customers</p>
+                                                    Total Referees</p>
                                             </div>
-                                            <div class="flex-shrink-0">
-                                                <h5 class="text-success fs-14 mb-0">
-                                                    <i class="ri-arrow-right-up-line fs-13 align-middle"></i>
-                                                    +29.08 %
-                                                </h5>
-                                            </div>
+
                                         </div>
                                         <div class="d-flex align-items-end justify-content-between mt-4">
                                             <div>
-                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="183.35">0</span>M
+                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="<?php
+                                                                                                                                            $query = mysqli_query($con, "select * from referees");
+                                                                                                                                            $total = mysqli_num_rows($query);
+                                                                                                                                            echo $total;
+
+                                                                                                                                            ?>">0</span>
                                                 </h4>
-                                                <a href="" class="text-decoration-underline text-muted">See
-                                                    details</a>
+                                                <a href="referees.php" class="text-decoration-underline text-muted">Referee</a>
                                             </div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-soft-warning rounded fs-3">
@@ -173,32 +174,163 @@
                                     </div><!-- end card body -->
                                 </div><!-- end card -->
                             </div><!-- end col -->
+                            <?php
 
-                            <div class="col-xl-3 col-md-6">
+                            if (isset($role) && $role == 1) {
+                                echo '<div class="col-xl-3 col-md-4">
+    <!-- card -->
+    <div class="card card-animate">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+                <div class="flex-grow-1 overflow-hidden">
+                    <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+                        Total USERS</p>
+                </div>
+
+            </div>
+            <div class="d-flex align-items-end justify-content-between mt-4">
+                <div>
+                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="<?php
+$query = mysqli_query($con, "select * from accounts");
+$total = mysqli_num_rows($query);
+echo $total;
+
+?>">0</span>
+                    </h4>
+                    <a href="users.php" class="text-decoration-underline text-muted">Users</a>
+                </div>
+                <div class="avatar-sm flex-shrink-0">
+                    <span class="avatar-title bg-soft-primary rounded fs-3">
+                        <i class="bx bx-user-circle text-danger"></i>
+                    </span>
+                </div>
+            </div>
+        </div><!-- end card body -->
+    </div><!-- end card -->
+</div><!-- end col -->';
+                            }
+
+                            ?>
+                            <div class="col-xl-3 col-md-4">
                                 <!-- card -->
                                 <div class="card card-animate">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center">
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                    My Balance</p>
+                                                    Total Teams</p>
                                             </div>
-                                            <div class="flex-shrink-0">
-                                                <h5 class="text-muted fs-14 mb-0">
-                                                    +0.00 %
-                                                </h5>
-                                            </div>
+
                                         </div>
                                         <div class="d-flex align-items-end justify-content-between mt-4">
                                             <div>
-                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value" data-target="165.89">0</span>k
+                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="<?php
+                                                                                                                                            $query = mysqli_query($con, "select * from teams");
+                                                                                                                                            $total = mysqli_num_rows($query);
+                                                                                                                                            echo $total;
+
+                                                                                                                                            ?>">0</span>
                                                 </h4>
-                                                <a href="" class="text-decoration-underline text-muted">Withdraw
-                                                    money</a>
+                                                <a href="teams.php" class="text-decoration-underline text-muted">Teams</a>
+                                            </div>
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-soft-success rounded fs-3">
+                                                    <i class=" bx bxl-microsoft-teams text-success"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+
+                            <div class="col-xl-3 col-md-4">
+                                <!-- card -->
+                                <div class="card card-animate">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-grow-1 overflow-hidden">
+                                                <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+                                                    total Leagues</p>
+                                            </div>
+
+                                        </div>
+                                        <div class="d-flex align-items-end justify-content-between mt-4">
+                                            <div>
+                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="<?php
+                                                                                                                                            $query = mysqli_query($con, "select * from leagues");
+                                                                                                                                            $total = mysqli_num_rows($query);
+                                                                                                                                            echo $total;
+
+                                                                                                                                            ?>">0</span></h4>
+                                                <a href="" class="text-decoration-underline text-muted">Leagues</a>
+                                            </div>
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-soft-info rounded fs-3">
+                                                    <i class="bx bx-football text-info"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+
+                            <div class="col-xl-3 col-md-4">
+                                <!-- card -->
+                                <div class="card card-animate">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-grow-1 overflow-hidden">
+                                                <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+                                                    Total Stadiums</p>
+                                            </div>
+
+                                        </div>
+                                        <div class="d-flex align-items-end justify-content-between mt-4">
+                                            <div>
+                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="<?php
+                                                                                                                                            $query = mysqli_query($con, "select * from stadiums");
+                                                                                                                                            $total = mysqli_num_rows($query);
+                                                                                                                                            echo $total;
+
+                                                                                                                                            ?>">0</span>
+                                                </h4>
+                                                <a href="stadiums.php" class="text-decoration-underline text-muted">Stadiums</a>
+                                            </div>
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-soft-warning rounded fs-3">
+                                                    <i class="bx bx-building-house text-warning"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+
+                            <div class="col-xl-3 col-md-4">
+                                <!-- card -->
+                                <div class="card card-animate">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-grow-1 overflow-hidden">
+                                                <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+                                                    Total Seasons</p>
+                                            </div>
+
+                                        </div>
+                                        <div class="d-flex align-items-end justify-content-between mt-4">
+                                            <div>
+                                                <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="<?php
+                                                                                                                                            $query = mysqli_query($con, "select * from seasons");
+                                                                                                                                            $total = mysqli_num_rows($query);
+                                                                                                                                            echo $total;
+
+                                                                                                                                            ?>">0</span>
+                                                </h4>
+                                                <a href="seasons.php" class="text-decoration-underline text-muted">Seasons</a>
                                             </div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-soft-primary rounded fs-3">
-                                                    <i class="bx bx-wallet text-primary"></i>
+                                                    <i class="lab la-delicious text-primary"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -239,7 +371,7 @@
                                             <!--end col-->
                                             <div class="col-6 col-sm-3">
                                                 <div class="p-3 border border-dashed border-start-0">
-                                                    <h5 class="mb-1">$<span class="counter-value" data-target="22.89">0</span>k</h5>
+                                                    <h5 class="mb-1"><span class="counter-value" data-target="22.89">0</span>k</h5>
                                                     <p class="text-muted mb-0">Earnings</p>
                                                 </div>
                                             </div>
