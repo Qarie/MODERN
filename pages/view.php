@@ -140,11 +140,11 @@ if (!(isset($_SESSION["login"]) && $_SESSION["login"] == "OK")) {
 
                                     <tbody>
                                         <td>#</td>
-                                        <td>Team</td>
+                                        <td>team</td>
                                         <td>p</td>
-                                        <td>w</td>
-                                        <td>d</td>
-                                        <td>l</td>
+                                        <td><?php  ?></td>
+                                        <td><?php echo $standingTemplate['draws']; ?></td>
+                                        <td><?php echo $standingTemplate['losses']; ?></td>
                                         <td>gf</td>
                                         <td>ga</td>
                                         <td>gd</td>
