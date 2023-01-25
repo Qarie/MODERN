@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     $added_by       = $_SESSION['id'];
 
 
-    $sql = "INSERT INTO registered_teams (team, season, added_by) VALUES('$team', '$season', '$added_by' )";
+    $sql = "INSERT INTO registered_teams (tname, season, added_by) VALUES('$team', '$season', '$added_by' )";
     $query = mysqli_query($con, $sql);
     if ($query) {
         header("location:register_teams.php");
