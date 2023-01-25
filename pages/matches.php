@@ -166,13 +166,13 @@ if (!(isset($_SESSION["login"]) && $_SESSION["login"] == "OK")) {
                                                             <?php
 
                                                             if ($status == 0) {
-                                                                echo "<div class='alert alert-primary' role='alert'>
+                                                                echo "<p class='alert alert-primary' role='alert'>
                                                                             Fixture
-                                                                            </div>";
+                                                                            </p";
                                                             } elseif ($status == 1) {
-                                                                echo "<div class='alert alert-success' role='alert'>
+                                                                echo "<p class='alert alert-success' role='alert'>
                                                                             Played
-                                                                            </div>";
+                                                                            </p>";
                                                             } elseif ($status == 2) {
                                                                 echo "Live";
                                                             }

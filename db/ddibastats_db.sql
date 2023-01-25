@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2023 at 03:55 PM
+-- Generation Time: Jan 25, 2023 at 11:15 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -227,8 +227,8 @@ CREATE TABLE `matches` (
   `matchday` varchar(225) NOT NULL,
   `season` varchar(225) NOT NULL,
   `home_team` varchar(225) NOT NULL,
-  `home_pts` int(11) NOT NULL,
-  `away_pts` int(11) NOT NULL,
+  `home_score` int(11) DEFAULT NULL,
+  `away_score` int(11) DEFAULT NULL,
   `away_team` varchar(225) NOT NULL,
   `status` int(11) NOT NULL,
   `date` varchar(225) NOT NULL,
@@ -241,12 +241,12 @@ CREATE TABLE `matches` (
 -- Dumping data for table `matches`
 --
 
-INSERT INTO `matches` (`id`, `matchday_id`, `league`, `matchday`, `season`, `home_team`, `home_pts`, `away_pts`, `away_team`, `status`, `date`, `time`, `added_on`, `added_by`) VALUES
-(3, 29, 'UGANDA PREMIER LEAGUE', 'match 1', '2022/2023', 'ARUA HILL SC', 0, 0, 'BUL FC', 0, '2023-01-12', '22:32', '2023-01-12 07:33:02', 6),
-(24, 30, 'UGANDA PREMIER LEAGUE', 'match 1', '2023/2024', 'ARUA HILL SC', 1, 0, 'BUL FC', 1, '2023-01-18', '23:08', '2023-01-18 08:08:29', 10),
-(25, 31, 'UGANDA PREMIER LEAGUE', 'match 1', '2024/2025', 'BUL FC', 0, 0, 'ARUA HILL SC', 0, '2023-01-18', '23:14', '2023-01-18 08:14:46', 6),
-(26, 30, 'UGANDA PREMIER LEAGUE', 'match 1', '2023/2024', 'BUL FC', 0, 0, 'braad', 1, '2023-01-19', '04:18', '2023-01-19 13:18:50', 10),
-(27, 30, 'UGANDA PREMIER LEAGUE', 'match 1', '2023/2024', 'ARUA HILL SC', 6, 0, 'braad', 1, '2023-01-19', '04:34', '2023-01-19 13:34:57', 10);
+INSERT INTO `matches` (`id`, `matchday_id`, `league`, `matchday`, `season`, `home_team`, `home_score`, `away_score`, `away_team`, `status`, `date`, `time`, `added_on`, `added_by`) VALUES
+(4, 30, 'UGANDA PREMIER LEAGUE', 'match 1', '2023/2024', '1', 0, 0, '5', 1, '2023-01-25', '21:53', '2023-01-25 06:53:11', 10),
+(5, 30, 'UGANDA PREMIER LEAGUE', 'match 1', '2023/2024', '1', 3, 0, '3', 1, '2023-01-25', '22:53', '2023-01-25 07:53:04', 10),
+(6, 30, 'UGANDA PREMIER LEAGUE', 'match 1', '2023/2024', '4', 6, 0, '1', 1, '2023-01-25', '22:59', '2023-01-25 07:59:24', 10),
+(7, 30, 'UGANDA PREMIER LEAGUE', 'match 1', '2023/2024', '3', 2, 4, '4', 1, '2023-01-25', '23:05', '2023-01-25 08:05:30', 10),
+(8, 30, 'UGANDA PREMIER LEAGUE', 'match 1', '2023/2024', '4', 1, 2, '5', 1, '2023-01-25', '23:52', '2023-01-25 08:52:16', 10);
 
 -- --------------------------------------------------------
 
@@ -335,7 +335,7 @@ INSERT INTO `referees` (`id`, `name`, `date_of_birth`, `phone`, `email`, `addres
 
 CREATE TABLE `registered_teams` (
   `id` int(11) NOT NULL,
-  `team` varchar(225) NOT NULL,
+  `tname` varchar(225) NOT NULL,
   `season` varchar(225) NOT NULL,
   `added_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `added_by` int(11) NOT NULL
@@ -345,7 +345,7 @@ CREATE TABLE `registered_teams` (
 -- Dumping data for table `registered_teams`
 --
 
-INSERT INTO `registered_teams` (`id`, `team`, `season`, `added_on`, `added_by`) VALUES
+INSERT INTO `registered_teams` (`id`, `tname`, `season`, `added_on`, `added_by`) VALUES
 (1, 'ARUA HILL SC', '27', '2023-01-18 14:00:06', 10),
 (3, 'BUL FC', '27', '2023-01-18 14:21:08', 10),
 (4, 'braad', '27', '2023-01-18 15:51:56', 10),
@@ -617,7 +617,7 @@ ALTER TABLE `matchday`
 -- AUTO_INCREMENT for table `matches`
 --
 ALTER TABLE `matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `players`

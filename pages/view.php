@@ -50,7 +50,7 @@ $tournament = $league."  ".$season;
                 <div class="row">
                     <div class="card">
                         <div class="card-header">
-                            <?= $tournament;?>
+                            <h4><b><?= $tournament;?></b></h4>
                         </div>
                         <div class="card-body">
 
@@ -73,7 +73,7 @@ $tournament = $league."  ".$season;
 
                             <table class="table">
                                 <thead style="text-transform: uppercase; background: grey; color: white;">
-                                    <th>#</th>
+                                    <th>Rank</th>
                                     <th>Team</th>
                                     <th>p</th>
                                     <th>w</th>
@@ -143,7 +143,7 @@ $tournament = $league."  ".$season;
 
                                         <tr>
                                             <td><?= $count; ?></td>
-                                            <td style="width: 600px;"><?= $res['Team']; ?></td>
+                                            <td style="width: 500px;"><?= $res['Team']; ?></td>
                                             <td><?= $res['P']; ?></td>
                                             <td><?= $res['W']; ?></td>
                                             <td><?= $res['D']; ?></td>
