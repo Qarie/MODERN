@@ -98,6 +98,12 @@ $tournament = $league."  ".$season;
                                     $league = $row['tournament'];
                                     $season = $row['season'];
 
+                                $sql1 = mysqli_query($con, "select * from matches where league = '$league' and season ='$season' and status ='1'");
+                                
+                                while($myrow = mysqli_fetch_array($sql1)) {
+                                echo $myrow['home_team']; 
+                                }
+                                // print_r($sql1);
 
                                     $sql3 = "SELECT
                                      tname AS Team, Sum(P) AS P,Sum(W) AS W,Sum(D) AS D,Sum(L) AS L,
