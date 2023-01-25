@@ -16,15 +16,15 @@ if (isset($_POST['submit'])) {
     $season = $row1['season'];
     $league = $row1['league'];
     $home_team           = $_POST['home_team'];
-    $home_pts       = $_POST['home_pts'];
-    $away_pts          = $_POST['away_pts'];
+    $home_score       = $_POST['home_score'];
+    $away_score          = $_POST['away_score'];
     $away_team          = $_POST['away_team'];
     $status  = $_POST['status'];
     $date  = $_POST['date'];
     $time  = $_POST['time'];
     $added_by       = $_SESSION['id'];
 
-    $sql = "INSERT INTO matches (matchday_id, league,matchday, season, home_team, home_pts,away_pts, away_team, status, date, time, added_by) VALUES('$id', '$league', '$matchday', '$season', '$home_team', '$home_pts','$away_pts', '$away_team', '$status', '$date', '$time', '$added_by' )";
+    $sql = "INSERT INTO matches (matchday_id, league,matchday, season, home_team, home_score,away_score, away_team, status, date, time, added_by) VALUES('$id', '$league', '$matchday', '$season', '$home_team', '$home_score','$away_score', '$away_team', '$status', '$date', '$time', '$added_by' )";
     $query = mysqli_query($con, $sql);
     if ($query) {
         header("location:matches.php");
@@ -73,6 +73,8 @@ if (isset($_POST['submit'])) {
                         <div class="card-body">
                             <form action="" method="POST">
 
+                               
+
                                 <div class="mb-3" id="dynamic_field">
                                     <div class="row" id="row">
                                         <div class="col">
@@ -81,9 +83,9 @@ if (isset($_POST['submit'])) {
                                                 <select class="form-control" name="home_team" id="" required>
                                                     <option>-- Select --</option>
                                                     <?php
-                                                    $hometeam = mysqli_query($con, 'select name from teams');
-                                                    while ($resulty = mysqli_fetch_array($hometeam)) { ?>
-                                                        <option><?= $resulty['name']; ?></option>
+                                                    $teams = mysqli_query($con, 'select * from registered_teams');
+                                                    foreach ($teams as $team) { ?>
+                                                        <option value="<?= $team['id']; ?>"><?= $team['tname']; ?></option>
                                                     <?php
                                                     } ?>
                                                 </select>
@@ -94,13 +96,13 @@ if (isset($_POST['submit'])) {
                                                 <label for="score" style="text-align: center;">Score</label>
                                                 <div class="col">
                                                     <div class="mb-3">
-                                                        <input type="text" name="home_pts" id="" class="form-control">
+                                                        <input type="text" name="home_score" id="" class="form-control">
 
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="mb-3">
-                                                        <input type="text" name="away_pts" id="" class="form-control">
+                                                        <input type="text" name="away_score" id="" class="form-control">
 
                                                     </div>
                                                 </div>
@@ -112,9 +114,9 @@ if (isset($_POST['submit'])) {
                                                 <select class="form-control" name="away_team" id="" required>
                                                     <option>-- Select --</option>
                                                     <?php
-                                                    $awayteam = mysqli_query($con, 'select name from teams');
-                                                    while ($resulty = mysqli_fetch_array($awayteam)) { ?>
-                                                        <option><?= $resulty['name']; ?></option>
+                                                    $teams = mysqli_query($con, 'select * from registered_teams');
+                                                    foreach ($teams as $team) { ?>
+                                                        <option value="<?= $team['id']; ?>"><?= $team['tname']; ?></option>
                                                     <?php
                                                     } ?>
                                                 </select>
@@ -167,26 +169,9 @@ if (isset($_POST['submit'])) {
 </div>
 
 <?php include '../includes/footer.php' ?>
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function() {
-            var i = 1;
-            $('#add').click(function() {
-                i++;
-                $('#dynamic_field').append('<div class="row" id="row' + i + '"><div class="col"><div class="mb-3"><label for="hometeam" style="text-align: center;">Hometeam</label><select class="form-control" name="hometeam" id=""><option>-- Select --</option><?php $hometeam = mysqli_query($con, 'select name from teams');
-                                                                                                                                                                                                                                                                    while ($resulty = mysqli_fetch_array($hometeam)) { ?><option><?= $resulty['name']; ?></option><?php } ?></select></div></div><div class="col"><div class="row"><label for="score" style="text-align: center;">Score</label><div class="col"><div class="mb-3"><input type="text" name="home" id="" class="form-control"></div></div><div class="col"><div class="mb-3"><input type="text" name="away" id="" class="form-control"></div></div></div></div><div class="col"><div class="mb-3"><label for="awayteam" style="text-align: center;">Awayteam</label><select class="form-control" name="awayteam" id=""><option>-- Select --</option><?php $awayteam = mysqli_query($con, 'select name from teams');
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    while ($resulty = mysqli_fetch_array($awayteam)) { ?><option><?= $resulty['name']; ?></option><?php } ?></select></div></div><div class="col"><div class="mb-3"><label for="Status" style="text-align: center;">Status</label><select class="form-control" name="status" id=""><option value="fixture">fixture</option><option value="played">played</option><option value="live">live</option></select></div></div><div class="col"><div class="mb-3"><label for="date">Date</label><input type="date" name="date" id="" class="form-control" placeholder="YY-MM-DD"></div></div><div class="col"><div class="mb-3"><label for="time">Time</label><input type="time" name="time" id="" class="form-control"></div></div><div class="col"><div class="mb-3"><a  class="btn btn-danger btn_remove" id="' + i + '" ><i class="las la-trash"></i></a></div></div></div>');
-            });
 
-            $(document).on('click', '.btn_remove', function() {
 
-                var button_id = $(this).attr("id");
 
-                $('#row' + button_id + '').remove();
-            });
-
-        });
-    </script> -->
 </body>
 
 </html>

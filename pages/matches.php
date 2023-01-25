@@ -83,7 +83,23 @@ if (!(isset($_SESSION["login"]) && $_SESSION["login"] == "OK")) {
 
                                                             $sql1 = mysqli_query($con, "select * from matches where matchday_id=$matchday_id");
                                                             while ($row1 = mysqli_fetch_array($sql1)) {
-                                                                $match = $row1['home_team'] . "      Vs        " . $row1['away_team'];
+
+                                                                $homeID = $row1['home_team'];
+                                                                $team1 = mysqli_query($con, " Select * from registered_teams where id = $homeID");
+                                                                foreach ($team1 as $home) :
+                                                                    $home_team = $home['tname'];
+
+                                                                endforeach;
+
+                                                                $awayID = $row1['away_team'];
+                                                                $team2 = mysqli_query($con, " Select * from registered_teams where id = $awayID");
+                                                                foreach ($team2 as $away) :
+                                                                    $away_team = $away['tname'];
+
+                                                                endforeach;
+
+
+                                                                $match = $home_team . "      Vs        " . $away_team;
                                                             ?>
                                                                 <tr>
                                                                     <td><?= $match; ?></td>
@@ -98,7 +114,7 @@ if (!(isset($_SESSION["login"]) && $_SESSION["login"] == "OK")) {
 
                                                             $sql1 = mysqli_query($con, "select * from matches where matchday_id=$matchday_id");
                                                             while ($row1 = mysqli_fetch_array($sql1)) {
-                                                                $score = $row1['home_pts'] . "      :        " . $row1['away_pts'];
+                                                                $score = $row1['home_score'] . "      :        " . $row1['away_score'];
                                                             ?>
                                                                 <tr>
                                                                     <td><?= $score; ?></td>

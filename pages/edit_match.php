@@ -11,15 +11,15 @@ $id = $_GET['id'];
 
 if (isset($_POST['submit'])) {
     $home_team           = $_POST['home_team'];
-    $home_pts       = $_POST['home_pts'];
-    $away_pts          = $_POST['away_pts'];
+    $home_score       = $_POST['home_score'];
+    $away_score          = $_POST['away_score'];
     $away_team          = $_POST['away_team'];
     $status  = $_POST['status'];
     $date  = $_POST['date'];
     $time  = $_POST['time'];
     $added_by       = $_SESSION['id'];
 
-    $sql = "UPDATE matches SET home_team='$home_team', home_pts='$home_pts', away_pts='$away_pts', away_team='$away_team', status='$status', date='$date', time='$time', added_by='$added_by' where id=$id";
+    $sql = "UPDATE matches SET home_team='$home_team', home_score='$home_score', away_score='$away_score', away_team='$away_team', status='$status', date='$date', time='$time', added_by='$added_by' where id=$id";
     $query = mysqli_query($con, $sql);
     if ($query) {
         header("location:matches.php");
@@ -95,13 +95,13 @@ if (isset($_POST['submit'])) {
                                                 <label for="score" style="text-align: center;">Score</label>
                                                 <div class="col">
                                                     <div class="mb-3">
-                                                        <input type="text" name="home_pts" value="<?= $row1['home_pts']; ?>" class="form-control">
+                                                        <input type="text" name="home_score" value="<?= $row1['home_score']; ?>" class="form-control">
 
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="mb-3">
-                                                        <input type="text" name="away_pts" value="<?= $row1['away_pts']; ?>" class="form-control">
+                                                        <input type="text" name="away_score" value="<?= $row1['away_score']; ?>" class="form-control">
 
                                                     </div>
                                                 </div>
