@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2023 at 11:15 AM
+-- Generation Time: Jan 28, 2023 at 01:19 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -47,7 +47,7 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`id`, `name`, `role`, `phone`, `email`, `date_of_birth`, `address`, `password`, `photo`, `vcode`, `added_on`, `added_by`) VALUES
-(3, 'LABAN KULUBASI', '1', '0700357107', 'LABANKULUBASI@GMAIL.COM', '1996-04-11', 'KAMPALA', '81dc9bdb52d04dc20036dbd8313ed055', '', '', '2022-12-10 09:38:13', 6),
+(3, 'LABAN KULUBASI', '1', '0700357107', 'LABANKULUBASI@GMAIL.COM', '1996-04-11', 'KAMPALA', '81dc9bdb52d04dc20036dbd8313ed055', '', 'vc75m2', '2022-12-10 09:38:13', 6),
 (6, 'Abdulkarim Lugobe jr', '1', '0755091645', 'ceerprotocol@gmail.com', '2022-12-23', 'wakiso', '5f4dcc3b5aa765d61d8327deb882cf99', '', 'j1dyid', '2022-12-23 03:30:47', 6),
 (10, 'ismael serebe', '2', '88888888888', 'admin@gmail.com', '2023-01-17', 'kampala', '5f4dcc3b5aa765d61d8327deb882cf99', '', '', '2023-01-17 14:21:22', 6);
 
@@ -160,7 +160,8 @@ CREATE TABLE `leagues` (
 
 INSERT INTO `leagues` (`id`, `name`, `slug`, `description`, `date_added`, `added_by`) VALUES
 (7, 'UGANDA PREMIER LEAGUE', 'UPL', 'TOP LEAGUE', '2022-12-08 14:59:47', 2),
-(8, 'MASAZA CUP ', 'MAC', 'MASAZA LEAGUE', '2022-12-08 15:00:18', 2);
+(8, 'MASAZA CUP ', 'MAC', 'MASAZA LEAGUE', '2022-12-08 15:00:18', 2),
+(10, 'ENGLISH PREMIER LEAGUE', 'EPL', 'The finalists', '2023-01-28 09:06:06', 3);
 
 -- --------------------------------------------------------
 
@@ -212,7 +213,9 @@ CREATE TABLE `matchday` (
 
 INSERT INTO `matchday` (`id`, `league`, `name`, `slug`, `description`, `season`, `type`, `added_by`, `date_added`) VALUES
 (30, 'UGANDA PREMIER LEAGUE', 'match 1', 'm1', 'jxcn ', '2023/2024', 'Round Robin', 6, '2023-01-12 07:41:04'),
-(31, 'UGANDA PREMIER LEAGUE', 'match 1', 'm2', 'f', '2024/2025', 'Round Robin', 6, '2023-01-12 07:51:24');
+(31, 'UGANDA PREMIER LEAGUE', 'match 1', 'm2', 'f', '2024/2025', 'Round Robin', 6, '2023-01-12 07:51:24'),
+(32, 'ENGLISH PREMIER LEAGUE', 'Match Day 1', 'MD1', 'First Match day', '2023-2024', 'Round Robin', 3, '2023-01-28 09:16:29'),
+(33, 'ENGLISH PREMIER LEAGUE', 'Match Day 2', 'md2', 'dde', '2023-2024', 'Round Robin', 3, '2023-01-28 11:00:13');
 
 -- --------------------------------------------------------
 
@@ -242,11 +245,9 @@ CREATE TABLE `matches` (
 --
 
 INSERT INTO `matches` (`id`, `matchday_id`, `league`, `matchday`, `season`, `home_team`, `home_score`, `away_score`, `away_team`, `status`, `date`, `time`, `added_on`, `added_by`) VALUES
-(4, 30, 'UGANDA PREMIER LEAGUE', 'match 1', '2023/2024', '1', 0, 0, '5', 1, '2023-01-25', '21:53', '2023-01-25 06:53:11', 10),
-(5, 30, 'UGANDA PREMIER LEAGUE', 'match 1', '2023/2024', '1', 3, 0, '3', 1, '2023-01-25', '22:53', '2023-01-25 07:53:04', 10),
-(6, 30, 'UGANDA PREMIER LEAGUE', 'match 1', '2023/2024', '4', 6, 0, '1', 1, '2023-01-25', '22:59', '2023-01-25 07:59:24', 10),
-(7, 30, 'UGANDA PREMIER LEAGUE', 'match 1', '2023/2024', '3', 2, 4, '4', 1, '2023-01-25', '23:05', '2023-01-25 08:05:30', 10),
-(8, 30, 'UGANDA PREMIER LEAGUE', 'match 1', '2023/2024', '4', 1, 2, '5', 1, '2023-01-25', '23:52', '2023-01-25 08:52:16', 10);
+(1, 32, 'ENGLISH PREMIER LEAGUE', 'Match Day 1', '2023-2024', '1', 3, 0, '2', 1, '2023-01-29', '17:50', '2023-01-28 09:45:37', 3),
+(2, 32, 'ENGLISH PREMIER LEAGUE', 'Match Day 1', '2023-2024', '4', 6, 0, '3', 1, '2023-01-29', '17:35', '2023-01-28 10:31:28', 3),
+(4, 33, 'ENGLISH PREMIER LEAGUE', 'Match Day 2', '2023-2024', '1', 2, 4, '4', 1, '2023-01-29', '18:14', '2023-01-28 11:10:54', 3);
 
 -- --------------------------------------------------------
 
@@ -337,6 +338,7 @@ CREATE TABLE `registered_teams` (
   `id` int(11) NOT NULL,
   `tname` varchar(225) NOT NULL,
   `season` varchar(225) NOT NULL,
+  `league` varchar(255) NOT NULL,
   `added_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `added_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -345,11 +347,11 @@ CREATE TABLE `registered_teams` (
 -- Dumping data for table `registered_teams`
 --
 
-INSERT INTO `registered_teams` (`id`, `tname`, `season`, `added_on`, `added_by`) VALUES
-(1, 'ARUA HILL SC', '27', '2023-01-18 14:00:06', 10),
-(3, 'BUL FC', '27', '2023-01-18 14:21:08', 10),
-(4, 'braad', '27', '2023-01-18 15:51:56', 10),
-(5, 'chxhxhxh', '27', '2023-01-18 15:52:04', 10);
+INSERT INTO `registered_teams` (`id`, `tname`, `season`, `league`, `added_on`, `added_by`) VALUES
+(1, 'Arsenal', '34', '10', '2023-01-28 09:10:29', 3),
+(2, 'Everton', '34', '10', '2023-01-28 09:11:37', 3),
+(3, 'Chelsea', '34', '10', '2023-01-28 09:11:48', 3),
+(4, 'MANCHESTER UNITED', '34', '10', '2023-01-28 09:12:04', 3);
 
 -- --------------------------------------------------------
 
@@ -377,7 +379,8 @@ CREATE TABLE `seasons` (
 
 INSERT INTO `seasons` (`id`, `tournament`, `season`, `win`, `draw`, `lose`, `teams`, `players`, `rules`, `date_added`, `added_by`) VALUES
 (27, 'UGANDA PREMIER LEAGUE', '2023/2024', 3, 1, 0, 'ARUA HILL SC,BUL FC', '', 'karim', '2023-01-12 07:40:14', 10),
-(33, 'UGANDA PREMIER LEAGUE', '2024/2025', 0, 0, 0, '', '', 'kdk', '2023-01-18 14:36:12', 10);
+(33, 'UGANDA PREMIER LEAGUE', '2024/2025', 0, 0, 0, '', '', 'kdk', '2023-01-18 14:36:12', 10),
+(34, 'ENGLISH PREMIER LEAGUE', '2023-2024', 0, 0, 0, '', '', 'no biting', '2023-01-28 09:06:44', 3);
 
 -- --------------------------------------------------------
 
@@ -429,7 +432,12 @@ INSERT INTO `teams` (`id`, `name`, `slug`, `description`, `venue`, `logo`, `date
 (2, 'ARUA HILL SC', 'ARH SC', 'ARUA HILL SOCCER CLUB', 'ARUA STADIUM', '13642.jpg', '2022-12-09 07:25:10', 0),
 (3, 'BUL FC', 'BUL FC', 'BUL FC', 'BUL FC STADIUMo', '', '2022-12-09 07:25:39', 6),
 (6, 'braad', 'dgdg', 'ddjd', 'jdjd', '', '2023-01-18 15:48:10', 0),
-(7, 'chxhxhxh', 'xj', 'xjjx', 'xjxj', '', '2023-01-18 15:48:21', 0);
+(7, 'chxhxhxh', 'xj', 'xjjx', 'xjxj', '', '2023-01-18 15:48:21', 0),
+(8, 'Vipers FC', 'We the best', 'A team that creates talent', 'Nichoto Stadium Kakuuto', 'heroes.png', '2023-01-27 09:19:41', 0),
+(9, 'Arsenal', 'The Gunners', 'retreat', 'tt', '', '2023-01-28 09:08:41', 0),
+(10, 'Chelsea', 'rre', 'rry', 'rrt', '', '2023-01-28 09:09:01', 0),
+(11, 'MANCHESTER UNITED', 'fg', 'cvjy', 'g', '', '2023-01-28 09:09:28', 0),
+(12, 'Everton', 'ee', 'fe', 'fg', '', '2023-01-28 09:09:58', 0);
 
 -- --------------------------------------------------------
 
@@ -599,7 +607,7 @@ ALTER TABLE `formation`
 -- AUTO_INCREMENT for table `leagues`
 --
 ALTER TABLE `leagues`
-  MODIFY `id` int(225) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(225) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `managers`
@@ -611,13 +619,13 @@ ALTER TABLE `managers`
 -- AUTO_INCREMENT for table `matchday`
 --
 ALTER TABLE `matchday`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `matches`
 --
 ALTER TABLE `matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `players`
@@ -641,13 +649,13 @@ ALTER TABLE `referees`
 -- AUTO_INCREMENT for table `registered_teams`
 --
 ALTER TABLE `registered_teams`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `seasons`
 --
 ALTER TABLE `seasons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `stadiums`
@@ -659,7 +667,7 @@ ALTER TABLE `stadiums`
 -- AUTO_INCREMENT for table `teams`
 --
 ALTER TABLE `teams`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `weather`
