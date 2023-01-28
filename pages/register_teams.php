@@ -128,7 +128,7 @@ if (isset($_POST['submit'])) {
                                             ?>
                                                 <tr>
                                                     <td><?= $count ?></td>
-                                                    <td><?= ($row['team']); ?></td>
+                                                    <td><?= ($row['tname']); ?></td>
 
                                                     <td>
                                                         <a data-bs-toggle="modal" data-bs-target="#modalId<?= $row['id']; ?>" class="btn btn-warning"><i class="las la-edit "></i></a>
