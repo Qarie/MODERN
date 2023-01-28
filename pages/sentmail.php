@@ -134,7 +134,7 @@ if (isset($_POST['vcodeconfirm'])) {
                     <script>
                         document.write(new Date().getFullYear())
                     </script> DbibaStats.
-                </strong><br>Developed by HI DEVELOPERS
+                </strong><br>
             </p>
 
 
