@@ -262,7 +262,7 @@ echo $total;
                                                                                                                                             echo $total;
 
                                                                                                                                             ?>">0</span></h4>
-                                                <a href="" class="text-decoration-underline text-muted">Leagues</a>
+                                                <a href="leagues.php" class="text-decoration-underline text-muted">Leagues</a>
                                             </div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-soft-info rounded fs-3">

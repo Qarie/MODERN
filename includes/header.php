@@ -108,7 +108,7 @@ $result = mysqli_fetch_array($sql);
                                             <div class="d-flex">
                                                 <img src="../assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-1">
-                                                    <h6 class="m-0">Angela Bernier</h6>
+                                                    <h6 class="m-0">Karim Lugobe</h6>
                                                     <span class="fs-11 mb-0 text-muted">Manager</span>
                                                 </div>
                                             </div>
@@ -118,8 +118,8 @@ $result = mysqli_fetch_array($sql);
                                             <div class="d-flex">
                                                 <img src="../assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-1">
-                                                    <h6 class="m-0">David Grasso</h6>
-                                                    <span class="fs-11 mb-0 text-muted">Web Designer</span>
+                                                    <h6 class="m-0">Karim Pas</h6>
+                                                    <span class="fs-11 mb-0 text-muted">Manager</span>
                                                 </div>
                                             </div>
                                         </a>
@@ -128,8 +128,8 @@ $result = mysqli_fetch_array($sql);
                                             <div class="d-flex">
                                                 <img src="../assets/images/users/avatar-5.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-1">
-                                                    <h6 class="m-0">Mike Bunch</h6>
-                                                    <span class="fs-11 mb-0 text-muted">React Developer</span>
+                                                    <h6 class="m-0">Karie Box</h6>
+                                                    <span class="fs-11 mb-0 text-muted">Manger</span>
                                                 </div>
                                             </div>
                                         </a>
@@ -229,8 +229,7 @@ $result = mysqli_fetch_array($sql);
                                                     </div>
                                                     <div class="flex-1">
                                                         <a href="#!" class="stretched-link">
-                                                            <h6 class="mt-0 mb-2 lh-base">Your <b>Elite</b> author Graphic
-                                                                Optimization <span class="text-secondary">reward</span> is
+                                                            <h6 class="mt-0 mb-2 lh-base">Your <b>updated</b> table <span class="text-secondary"></span> is
                                                                 ready!
                                                             </h6>
                                                         </a>
@@ -249,14 +248,13 @@ $result = mysqli_fetch_array($sql);
 
                                             <div class="text-reset notification-item d-block dropdown-item position-relative active">
                                                 <div class="d-flex">
-                                                    <img src="../assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="../assets/images/users/user-dummy-img.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-1">
                                                         <a href="#!" class="stretched-link">
-                                                            <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
+                                                            <h6 class="mt-0 mb-1 fs-13 fw-semibold">Karie Lugs</h6>
                                                         </a>
                                                         <div class="fs-13 text-muted">
-                                                            <p class="mb-1">Answered to your comment on the cash flow forecast's
-                                                                graph 🔔.</p>
+                                                            <p class="mb-1">Answered to your comment on the new teams 🔔.</p>
                                                         </div>
                                                         <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
                                                             <span><i class="mdi mdi-clock-outline"></i> 48 min ago</span>
@@ -298,13 +296,13 @@ $result = mysqli_fetch_array($sql);
 
                                             <div class="text-reset notification-item d-block dropdown-item position-relative">
                                                 <div class="d-flex">
-                                                    <img src="../assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="../assets/images/users/user-dummy-img.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-1">
                                                         <a href="#!" class="stretched-link">
-                                                            <h6 class="mt-0 mb-1 fs-13 fw-semibold">Maureen Gibson</h6>
+                                                            <h6 class="mt-0 mb-1 fs-13 fw-semibold">Laban Kulubasi</h6>
                                                         </a>
                                                         <div class="fs-13 text-muted">
-                                                            <p class="mb-1">We talked about a project on linkedin.</p>
+                                                            <p class="mb-1">I couldnt enter a new league.</p>
                                                         </div>
                                                         <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
                                                             <span><i class="mdi mdi-clock-outline"></i> 4 hrs ago</span>
@@ -331,13 +329,13 @@ $result = mysqli_fetch_array($sql);
                                         <div data-simplebar style="max-height: 300px;" class="pe-2">
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
-                                                    <img src="../assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="../assets/images/users/user-dummy-img.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-1">
                                                         <a href="#!" class="stretched-link">
-                                                            <h6 class="mt-0 mb-1 fs-13 fw-semibold">James Lemire</h6>
+                                                            <h6 class="mt-0 mb-1 fs-13 fw-semibold">Karie Lab</h6>
                                                         </a>
                                                         <div class="fs-13 text-muted">
-                                                            <p class="mb-1">We talked about a project on linkedin.</p>
+                                                            <p class="mb-1">Updated matches in seson 2023-2024.</p>
                                                         </div>
                                                         <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
                                                             <span><i class="mdi mdi-clock-outline"></i> 30 min ago</span>
@@ -354,14 +352,13 @@ $result = mysqli_fetch_array($sql);
 
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
-                                                    <img src="../assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="../assets/images/users/user-dummy-img.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-1">
                                                         <a href="#!" class="stretched-link">
-                                                            <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
+                                                            <h6 class="mt-0 mb-1 fs-13 fw-semibold">Karie Lugs</h6>
                                                         </a>
                                                         <div class="fs-13 text-muted">
-                                                            <p class="mb-1">Answered to your comment on the cash flow forecast's
-                                                                graph 🔔.</p>
+                                                            <p class="mb-1">Updated matches in seson 2023-2024 🔔.</p>
                                                         </div>
                                                         <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
                                                             <span><i class="mdi mdi-clock-outline"></i> 2 hrs ago</span>
@@ -378,13 +375,13 @@ $result = mysqli_fetch_array($sql);
 
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
-                                                    <img src="../assets/images/users/avatar-6.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="../assets/images/users/user-dummy-img.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-1">
                                                         <a href="#!" class="stretched-link">
                                                             <h6 class="mt-0 mb-1 fs-13 fw-semibold">Kenneth Brown</h6>
                                                         </a>
                                                         <div class="fs-13 text-muted">
-                                                            <p class="mb-1">Mentionned you in his comment on 📃 invoice #12501.
+                                                            <p class="mb-1">Updated matches in seson 2023-2024.
                                                             </p>
                                                         </div>
                                                         <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
@@ -402,13 +399,13 @@ $result = mysqli_fetch_array($sql);
 
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
-                                                    <img src="../assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                    <img src="../assets/images/users/user-dummy-img.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                     <div class="flex-1">
                                                         <a href="#!" class="stretched-link">
-                                                            <h6 class="mt-0 mb-1 fs-13 fw-semibold">Maureen Gibson</h6>
+                                                            <h6 class="mt-0 mb-1 fs-13 fw-semibold">Karie Jumba</h6>
                                                         </a>
                                                         <div class="fs-13 text-muted">
-                                                            <p class="mb-1">We talked about a project on linkedin.</p>
+                                                            <p class="mb-1">Updated matches in seson 2023-2024.</p>
                                                         </div>
                                                         <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
                                                             <span><i class="mdi mdi-clock-outline"></i> 3 days ago</span>
@@ -444,7 +441,7 @@ $result = mysqli_fetch_array($sql);
                         <div class="dropdown ms-sm-3 header-item topbar-user">
                             <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="d-flex align-items-center">
-                                    <img class="rounded-circle header-profile-user" src="../assets/images/users/avatar-1.jpg" alt="Header Avatar">
+                                    <img class="rounded-circle header-profile-user" src="../assets/images/users/user-dummy-img.jpg" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?= $result['name'];?></span>
                                         <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">
