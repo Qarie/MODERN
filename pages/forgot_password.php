@@ -1,3 +1,5 @@
+
+
 <?php
 include 'config.php';
 require "../vendor/autoload.php";
@@ -6,6 +8,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
 if (isset($_POST['fgpswdsubmit'])) {
+    try{
     function validate($data)
     {
         $data = trim($data);
@@ -51,10 +54,10 @@ if (isset($_POST['fgpswdsubmit'])) {
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
-        $mail->Username = "l.kulubasi@dscmuni.com";
-        $mail->Password = "Sululaba@dsc22";
+        $mail->Username = "noreply@dscmuni.com";
+        $mail->Password = "noreply@2022";
 
-        $mail->setFrom("l.kulubasi@dscmuni.com", 'Dibbastats Password Recovery');
+        $mail->setFrom("noreply@dscmuni.com", 'Dibbastats Password Recovery');
         $mail->addAddress($email);
 
         $mail->Subject = 'Dibbastats Verification Code';
@@ -66,7 +69,7 @@ if (isset($_POST['fgpswdsubmit'])) {
         if ($insquery) {
             $mail->send();
             $msg = "<div class='alert alert-primary shadow' role='alert' style='border-left:#155724 5px solid; border-radius: 0px'>
-         Password Reset Code Has Been Sent To $email.
+         Password Reset Code Has Been Sent To <h5 class='fw-bold'>$email.</h5>
          <script type='text/javascript'>setTimeout(function() { window.location.href = 'sentmail.php?email=$email';}, 3000);</script>
          </div>";
             // header("Location: sentmail.php?email=$email");
@@ -79,7 +82,12 @@ if (isset($_POST['fgpswdsubmit'])) {
         $msg = "<div class='alert alert-danger shadow' role='alert' style='border-left:#155724 5px solid; border-radius: 0px'>Ooops! <h5 class='fw-bold'>Email not found.</h5> <script type='text/javascript'>setTimeout(function() { window.location.href = 'forgot_password.php';}, 3000);</script></div>";
         // header("Location: fgotpswd.php");
     }
-    mysqli_close($con);
+    mysqli_close($con);}
+    catch (Exception $msg) {
+    // echo $msg->getMessage();
+        $msg="<div class='alert alert-danger shadow' role='alert' style='border-left:#155724 5px solid; border-radius: 0px'>Ooops! <h6 class='fw-bold'>An Error Occurred. Please Check your internet Connection.</h6> <script type='text/javascript'>setTimeout(function() { window.location.href = 'forgot_password.php';}, 3000);</script></div>";
+
+}
 }
 
 ?>
@@ -183,7 +191,7 @@ if (isset($_POST['fgpswdsubmit'])) {
                     <script>
                         document.write(new Date().getFullYear())
                     </script> DbibaStats.
-                </strong><br>Developed by HI DEVELOPERS
+                </strong><br>
             </p>
 
 
