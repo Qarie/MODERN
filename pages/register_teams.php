@@ -9,11 +9,12 @@ if (!(isset($_SESSION["login"]) && $_SESSION["login"] == "OK")) {
 if (isset($_POST['submit'])) {
     $team           = $_POST['team'];
     $season       = $_POST['season'];
+    $league       = $_POST['league'];
 
     $added_by       = $_SESSION['id'];
 
 
-    $sql = "INSERT INTO registered_teams (tname, season, added_by) VALUES('$team', '$season', '$added_by' )";
+    $sql = "INSERT INTO registered_teams (tname, season,league, added_by) VALUES('$team', '$season','$league', '$added_by' )";
     $query = mysqli_query($con, $sql);
     if ($query) {
         header("location:register_teams.php");
@@ -62,16 +63,19 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="card-body">
                             <form action="" method="POST" enctype="multipart/form-data">
+                                
+
                                 <div class="mb-4">
-                                    <label for="name"> Team</label>
-                                    <select type="text" name="team" id="" class="form-select">
-                                        <option selected disabled>-- Select Role --</option>
+                                    <label for="role"> League</label>
+                                    <select type="text" name="league" id="" class="form-select">
+                                        <option selected disabled>-- Select League --</option>
                                         <?php
-                                        $teams = mysqli_query($con, "select * from teams");
-                                        foreach ($teams as $team) {
+                                        $leags = mysqli_query($con, "select * from leagues");
+                                        foreach ($leags as $leag) {
                                         ?>
-                                            <option value="<?= $team['name']; ?>"><?= $team['name']; ?></option>
+                                            <option value="<?= $leag['id']; ?>"><?= $leag['name']; ?></option>
                                         <?php } ?>
+
 
                                     </select>
                                 </div>
@@ -79,7 +83,7 @@ if (isset($_POST['submit'])) {
                                 <div class="mb-4">
                                     <label for="role"> Season</label>
                                     <select type="text" name="season" id="" class="form-select">
-                                        <option selected disabled>-- Select Role --</option>
+                                        <option selected disabled>-- Select Season --</option>
                                         <?php
                                         $seasons = mysqli_query($con, "select * from seasons");
                                         foreach ($seasons as $season) {
@@ -87,6 +91,20 @@ if (isset($_POST['submit'])) {
                                             <option value="<?= $season['id']; ?>"><?= $season['season']; ?></option>
                                         <?php } ?>
 
+
+                                    </select>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="name"> Team</label>
+                                    <select type="text" name="team" id="" class="form-select">
+                                        <option selected disabled>-- Select Team --</option>
+                                        <?php
+                                        $teams = mysqli_query($con, "select * from teams");
+                                        foreach ($teams as $team) {
+                                        ?>
+                                            <option value="<?= $team['name']; ?>"><?= $team['name']; ?></option>
+                                        <?php } ?>
 
                                     </select>
                                 </div>
@@ -153,7 +171,7 @@ if (isset($_POST['submit'])) {
                                                                                 <div class="mb-4">
                                                                                     <label for="name"> Team</label>
                                                                                     <select type="text" name="team" id="" class="form-select">
-                                                                                    <option selected value="<?= $row['team']; ?>"><?= $row['team']; ?></option>
+                                                                                    <option selected value="<?= $row['tname']; ?>"><?= $row['tname']; ?></option>
                                                                                         <?php
                                                                                         $teams = mysqli_query($con, "select * from teams");
                                                                                         foreach ($teams as $team) {

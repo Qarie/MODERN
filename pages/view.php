@@ -71,7 +71,7 @@ $tournament = $league . "  " . $season;
                             ?>
 
 
-                            <table id="buttons-datatables" class="display table">
+                            <table id="button-datatables" class="table">
                                 <thead style="text-transform: uppercase; background: grey; color: white;" >
                                     <th>#</th>
                                     <th>Team</th>
@@ -180,9 +180,10 @@ $tournament = $league . "  " . $season;
                                                 if ($home_score > $away_score) {
                                                     # code...
                                                     $hw = $hw + 1;
-                                                } else {
-                                                    $hw = 0;
-                                                }
+                                                } 
+                                                // else {
+                                                //     $hw = 0;
+                                                // }
 
                                                 // echo $hw;
                                             }
@@ -203,9 +204,10 @@ $tournament = $league . "  " . $season;
                                                 if ($away_score > $home_score) {
                                                     # code...
                                                     $aw++;
-                                                } else {
-                                                    $aw = 0;
-                                                }
+                                                } 
+                                                // else {
+                                                //     $aw = 0;
+                                                // }
                                                 // echo $aw;
                                             }
                                             ?>
@@ -335,21 +337,24 @@ $tournament = $league . "  " . $season;
 
                                             <?php
 
-                                            $sql1 = mysqli_query($con, "select * from matches where home_team = '$team' and status = '1' and league = '$league' and season ='$season'");
+                                            $sql1 = mysqli_query($con, "select SUM(home_score) AS sum, SUM(away_score) AS sumaway from matches where home_team = '$team' and status = '1' and league = '$league' and season ='$season'");
                                             $gd = 0;
                                             while ($row1 = mysqli_fetch_array($sql1)) {
-
-                                                $gd = $row1['home_score'] - $row1['away_score'];
+                                                $home_goals=$row1['sum'];
+                                                $away_goals=$row1['sumaway'];
+                                                $gd = $home_goals - $away_goals;
                                                 // $away_score = $row1['away_score'];
                                             }
                                             ?>
 
                                             <?php
 
-                                            $sql2 = mysqli_query($con, "select * from matches where away_team = '$team' and status = '1' and league = '$league' and season ='$season'");
+                                            $sql2 = mysqli_query($con, "select SUM(home_score) AS sum, SUM(away_score) AS sumaway from matches where away_team = '$team' and status = '1' and league = '$league' and season ='$season'");
 
                                             while ($row2 = mysqli_fetch_array($sql2)) {
-                                                $gd = $row2['away_score'] - $row2['home_score'];
+                                                $home_goal=$row2['sum'];
+                                                $away_goal=$row2['sumaway'];
+                                                // $gd = $away_goal - $home_goal;
                                                 // $away_score = $row1['away_score'];
                                             }
                                             ?>
@@ -357,6 +362,7 @@ $tournament = $league . "  " . $season;
                                             <td><?php
 
 
+                                                // echo $home_goals;
                                                 echo $gd;
                                                 ?>
                                             </td>

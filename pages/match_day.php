@@ -85,6 +85,20 @@ if (isset($_POST['submit'])) {
                                 </div>
 
                                 <div class="mb-3">
+                                    <label for="season">League</label>
+                                    <select class="form-control" name="league" id="" required>
+                                        <option>-- Select --</option>
+                                        <?php
+                                        $get = mysqli_query($con, 'select * from leagues');
+                                        while ($result = mysqli_fetch_array($get)) { ?>
+                                            <option><?= $result['name']; ?></option>
+                                        <?php
+                                        } ?>
+                                    </select>
+
+                                </div>
+
+                                <div class="mb-3">
                                     <label for="season">Season</label>
                                     <select class="form-control" name="season" id="" required>
                                         <option>-- Select --</option>
@@ -98,19 +112,7 @@ if (isset($_POST['submit'])) {
 
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="season">League</label>
-                                    <select class="form-control" name="league" id="" required>
-                                        <option>-- Select --</option>
-                                        <?php
-                                        $get = mysqli_query($con, 'select * from leagues');
-                                        while ($result = mysqli_fetch_array($get)) { ?>
-                                            <option><?= $result['name']; ?></option>
-                                        <?php
-                                        } ?>
-                                    </select>
-
-                                </div>
+                                
 
                                 <div class="mb-3">
                                     <label for="type">Match Day Type</label>
