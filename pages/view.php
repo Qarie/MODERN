@@ -342,7 +342,7 @@ $tournament = $league . "  " . $season;
                                             while ($row1 = mysqli_fetch_array($sql1)) {
                                                 $home_goals=$row1['sum'];
                                                 $away_goals=$row1['sumaway'];
-                                                $gd = $home_goals - $away_goals;
+                                                // $gd = $home_goals - $away_goals;
                                                 // $away_score = $row1['away_score'];
                                             }
                                             ?>
@@ -363,6 +363,7 @@ $tournament = $league . "  " . $season;
 
 
                                                 // echo $home_goals;
+                                                $gd = $home_goals - $away_goals + $away_goal - $home_goal;
                                                 echo $gd;
                                                 ?>
                                             </td>
