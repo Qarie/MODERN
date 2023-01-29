@@ -86,12 +86,14 @@ if (isset($_POST['submit'])) {
 
                                 <div class="mb-3">
                                     <label for="season">League</label>
-                                    <select class="form-control" name="league" id="" required>
+                                    <select class="form-control" name="league"  id="season" required>
                                         <option>-- Select --</option>
                                         <?php
                                         $get = mysqli_query($con, 'select * from leagues');
-                                        while ($result = mysqli_fetch_array($get)) { ?>
-                                            <option><?= $result['name']; ?></option>
+                                        
+                                        while ($result = mysqli_fetch_array($get)) {
+                                            $league_id = $result['id']; ?>
+                                            <option value="<?= $result['id']; ?>"><?= $result['name']; ?></option>
                                         <?php
                                         } ?>
                                     </select>
@@ -103,6 +105,7 @@ if (isset($_POST['submit'])) {
                                     <select class="form-control" name="season" id="" required>
                                         <option>-- Select --</option>
                                         <?php
+                                       
                                         $get = mysqli_query($con, 'select * from seasons');
                                         while ($result = mysqli_fetch_array($get)) { ?>
                                             <option><?= $result['season']; ?></option>
@@ -196,7 +199,7 @@ if (isset($_POST['submit'])) {
 
                                                                                 <div class="mb-3">
                                                                                     <label for="season">Season</label>
-                                                                                    <select class="form-control" name="season" id="" required>
+                                                                                    <select class="form-control" name="season"   id="" required>
                                                                                         <option value="<?= $row['season']; ?>" selected><?= $row['season']; ?></option>
                                                                                         <?php
                                                                                         $get = mysqli_query($con, 'select * from seasons');
@@ -298,6 +301,8 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 </div>
+
+
 
 <?php include '../includes/footer.php' ?>
 </body>

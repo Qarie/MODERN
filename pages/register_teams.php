@@ -63,17 +63,17 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="card-body">
                             <form action="" method="POST" enctype="multipart/form-data">
-                                
+
 
                                 <div class="mb-4">
                                     <label for="role"> League</label>
-                                    <select type="text" name="league" id="" class="form-select">
+                                    <select type="text" name="league" id="league" class="form-select">
                                         <option selected disabled>-- Select League --</option>
                                         <?php
                                         $leags = mysqli_query($con, "select * from leagues");
                                         foreach ($leags as $leag) {
                                         ?>
-                                            <option value="<?= $leag['id']; ?>"><?= $leag['name']; ?></option>
+                                            <option value="<?= $leag['id']; ?>"><?= $leag['id']; ?></option>
                                         <?php } ?>
 
 
@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) {
 
                                 <div class="mb-4">
                                     <label for="role"> Season</label>
-                                    <select type="text" name="season" id="" class="form-select">
+                                    <select type="text" name="season" id="season" class="form-select">
                                         <option selected disabled>-- Select Season --</option>
                                         <?php
                                         $seasons = mysqli_query($con, "select * from seasons");
@@ -158,7 +158,7 @@ if (isset($_POST['submit'])) {
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title" id="modalTitleId">EDIT USER</h5>
+                                                                        <h5 class="modal-title" id="modalTitleId">EDIT TEAM</h5>
                                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                     </div>
                                                                     <div class="modal-body">
@@ -166,12 +166,12 @@ if (isset($_POST['submit'])) {
                                                                             <div><?php if (isset($msg)) {
                                                                                         echo $msg;
                                                                                     } ?></div>
-                                                                            <form action="" method="POST" >
+                                                                            <form action="" method="POST">
                                                                                 <input type="text" name="id" hidden value="<?= $row['id']; ?>">
                                                                                 <div class="mb-4">
                                                                                     <label for="name"> Team</label>
                                                                                     <select type="text" name="team" id="" class="form-select">
-                                                                                    <option selected value="<?= $row['tname']; ?>"><?= $row['tname']; ?></option>
+                                                                                        <option selected value="<?= $row['tname']; ?>"><?= $row['tname']; ?></option>
                                                                                         <?php
                                                                                         $teams = mysqli_query($con, "select * from teams");
                                                                                         foreach ($teams as $team) {
@@ -186,18 +186,18 @@ if (isset($_POST['submit'])) {
                                                                                     <label for="role"> Season</label>
                                                                                     <select type="text" name="season" id="" class="form-select">
                                                                                         <option selected value="<?= $row['season']; ?>">
-                                                                                        <?php
-                                                                                        
-                                                                                        $seasona=$row['season'];
-                                                                                        $getSeason = mysqli_query($con, "select * from seasons where id = '$seasona'");
-                                                                                        $result = mysqli_fetch_array($getSeason);
-                                                                                        $seasons=$result['season'];
-                                                                                        
-                                                                                        echo $seasons;
-                                            
-                                                                                        
-                                                                                        
-                                                                                        ?>
+                                                                                            <?php
+
+                                                                                            $seasona = $row['season'];
+                                                                                            $getSeason = mysqli_query($con, "select * from seasons where id = '$seasona'");
+                                                                                            $result = mysqli_fetch_array($getSeason);
+                                                                                            $seasons = $result['season'];
+
+                                                                                            echo $seasons;
+
+
+
+                                                                                            ?>
 
                                                                                         </option>
                                                                                         <?php
@@ -279,10 +279,12 @@ if (isset($_POST['submit'])) {
 
         </div>
         <!-- container-fluid -->
+    </div>
+</div>
 
-        <!-- End Page-content -->
+<!-- End Page-content -->
 
-        <?php include "../includes/footer.php"; ?>
-        </body>
+<?php include "../includes/footer.php"; ?>
+</body>
 
-        </html>
+</html>

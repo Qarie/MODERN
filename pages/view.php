@@ -12,7 +12,11 @@ $query = mysqli_query($con, "SELECT * FROM seasons where id = $seasonId ");
 $row = mysqli_fetch_array($query);
 $league = $row['tournament'];
 $season = $row['season'];
-$tournament = $league . "  " . $season;
+$querys = mysqli_query($con, "select * from leagues where id = '$league'");
+$rows = mysqli_fetch_array($querys);
+$name = $rows['name'];
+
+$tournament = $name . "  " . $season;
 
 ?>
 <?php include "../includes/header.php"; ?>
@@ -72,8 +76,8 @@ $tournament = $league . "  " . $season;
 
 
                             <table id="button-datatables" class="table">
-                                <thead style="text-transform: uppercase; background: grey; color: white;" >
-                                    <th>#</th>
+                                <thead style="text-transform: uppercase; background: grey; color: white;">
+
                                     <th>Team</th>
 
                                     <!-- <th>ph</th> -->
@@ -96,25 +100,14 @@ $tournament = $league . "  " . $season;
                                     <th>pts</th>
 
                                 </thead>
-                                <tbody style="text-transform: uppercase;">
+                                <tbody style="text-transform: uppercase; font-size:13px;">
 
                                     <?php
 
-                                    $seasonId = $_GET['id'];
-                                    $query = mysqli_query($con, "SELECT * FROM seasons where id = $seasonId ");
-                                    $row = mysqli_fetch_array($query);
-
-
-                                    $status = '1';
-                                    $league = $row['tournament'];
-                                    $season = $row['season'];
-
-
-                                    
                                     $count = 0;
 
                                     // $sql4 = mysqli_query($con, $sql3);
-                                    $reg_teams = mysqli_query($con, "select * from registered_teams where season = '$seasonId'");
+                                    $reg_teams = mysqli_query($con, "select * from registered_teams where season = '$seasonId' and league = '$league' ORDER BY tname ASC");
                                     foreach ($reg_teams as $res) {
                                         $team = $res['id'];
                                         $count++
@@ -124,10 +117,10 @@ $tournament = $league . "  " . $season;
 
 
                                         <tr>
-                                            <td><?= $count; ?>.</td>
+                                            <!-- <td><?= $count; ?>.</td> -->
                                             <td style="width: 500px;">
-                                            
-                                            <?= $res['tname']; ?></td>
+
+                                                <?= $res['tname']; ?></td>
 
                                             <?php
 
@@ -135,7 +128,7 @@ $tournament = $league . "  " . $season;
                                             while ($row1 = mysqli_fetch_array($sql1)) {
                                                 $score = $row1['home_team'] . "     Vs       " . $row1['away_team'];
                                             ?>
-                                                
+
                                             <?php
                                             } ?>
 
@@ -147,7 +140,7 @@ $tournament = $league . "  " . $season;
                                             while ($row1 = mysqli_fetch_array($sql2)) {
                                                 $score = $row1['home_team'] . "     Vs       " . $row1['away_team'];
                                             ?>
-                                                
+
                                             <?php
                                             } ?>
 
@@ -180,7 +173,7 @@ $tournament = $league . "  " . $season;
                                                 if ($home_score > $away_score) {
                                                     # code...
                                                     $hw = $hw + 1;
-                                                } 
+                                                }
                                                 // else {
                                                 //     $hw = 0;
                                                 // }
@@ -204,7 +197,7 @@ $tournament = $league . "  " . $season;
                                                 if ($away_score > $home_score) {
                                                     # code...
                                                     $aw++;
-                                                } 
+                                                }
                                                 // else {
                                                 //     $aw = 0;
                                                 // }
@@ -340,8 +333,8 @@ $tournament = $league . "  " . $season;
                                             $sql1 = mysqli_query($con, "select SUM(home_score) AS sum, SUM(away_score) AS sumaway from matches where home_team = '$team' and status = '1' and league = '$league' and season ='$season'");
                                             $gd = 0;
                                             while ($row1 = mysqli_fetch_array($sql1)) {
-                                                $home_goals=$row1['sum'];
-                                                $away_goals=$row1['sumaway'];
+                                                $home_goals = $row1['sum'];
+                                                $away_goals = $row1['sumaway'];
                                                 // $gd = $home_goals - $away_goals;
                                                 // $away_score = $row1['away_score'];
                                             }
@@ -352,8 +345,8 @@ $tournament = $league . "  " . $season;
                                             $sql2 = mysqli_query($con, "select SUM(home_score) AS sum, SUM(away_score) AS sumaway from matches where away_team = '$team' and status = '1' and league = '$league' and season ='$season'");
 
                                             while ($row2 = mysqli_fetch_array($sql2)) {
-                                                $home_goal=$row2['sum'];
-                                                $away_goal=$row2['sumaway'];
+                                                $home_goal = $row2['sum'];
+                                                $away_goal = $row2['sumaway'];
                                                 // $gd = $away_goal - $home_goal;
                                                 // $away_score = $row1['away_score'];
                                             }
@@ -371,8 +364,8 @@ $tournament = $league . "  " . $season;
                                             <td>
                                                 <?php
 
-$pts = $w*3 + $d*1 + $l*0;
-echo $pts;
+                                                $pts = $w * 3 + $d * 1 + $l * 0;
+                                                echo $pts;
 
                                                 ?>
                                             </td>

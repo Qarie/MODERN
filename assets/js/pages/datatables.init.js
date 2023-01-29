@@ -6,6 +6,6 @@ $(document).ready(function(){var e=$("#add-rows").DataTable(),a=1;$("#addRow").o
 $(document).ready(function(){$("#example").DataTable()}),
 document.addEventListener("DOMContentLoaded",function(){new DataTable("#fixed-header",{fixedHeader:!0})}),
 document.addEventListener("DOMContentLoaded",function(){new DataTable("#model-datatables",{responsive:{details:{display:$.fn.dataTable.Responsive.display.modal({header:function(e){e=e.data();return"Details for "+e[0]+" "+e[1]}}),renderer:$.fn.dataTable.Responsive.renderer.tableAll({tableClass:"table"})}}})}),
-document.addEventListener("DOMContentLoaded",function(){new DataTable("#button-datatables",{dom:"Bfrtip",buttons:["copy","csv","excel","print","pdf"],order: ([9, 'desc'], [ 8, 'desc' ])  })}),
+document.addEventListener("DOMContentLoaded",function(){new DataTable("#button-datatables",{dom:"Bfrtip",order: ([8, 'desc'], [ 7, 'desc' ])  })}),
 document.addEventListener("DOMContentLoaded",function(){new DataTable("#buttons-datatables",{dom:"Bfrtip",buttons:["copy","csv","excel","print","pdf"] })}),
 document.addEventListener("DOMContentLoaded",function(){new DataTable("#ajax-datatables",{ajax:"assets/json/datatable.json"})});

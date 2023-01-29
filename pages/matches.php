@@ -75,7 +75,15 @@ if (!(isset($_SESSION["login"]) && $_SESSION["login"] == "OK")) {
                                                 <tr>
                                                     <td><?= $count; ?></td>
                                                     <td><?= $row['name']; ?></td>
-                                                    <td><b><?= $row['league']; ?></b><br><?= $row['season']; ?></td>
+                                                    <td><b><?php
+                                                     $league_id = $row['league']; 
+                                                     $leagues = mysqli_query($con, "select * from leagues where id = '$league_id'");
+                                                     foreach ($leagues as $league):
+                                                        echo $league['name'];
+                                                     endforeach;
+                                                     
+                                                     
+                                                     ?></b><br><?= $row['season']; ?></td>
                                                     <td>
 
                                                         <table class="table table-striped table-bordered">

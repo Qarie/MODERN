@@ -52,7 +52,14 @@ if (!(isset($_SESSION["login"]) && $_SESSION["login"] == "OK")) {
                                 <div class="card-body text-center">
 
                                     <div class="card-title mb-1">
-                                        <strong><?= $result['tournament']; ?><br>TABLE</strong>
+                                        <strong><?php
+                                        $league_id = $result['tournament'];
+                                        $leagues = mysqli_query($con, "select * from leagues where id = '$league_id'");
+                                        foreach ($leagues as $league) :
+                                            echo $league['name'];
+                                        endforeach;
+                                        
+                                        ?></strong>
                                         <div class="mb-3"><img src="../stickers/world-cup.png" alt="image" class="avatar avatar-lg avatar-rounded rounded"></div>
                                         <?= $result['season']; ?>
 

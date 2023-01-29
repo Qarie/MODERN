@@ -151,6 +151,9 @@ if (isset($_POST['submit'])) {
                                                                     </div>
                                                                     <div class="modal-body">
                                                                         <div class="container-fluid">
+                                                                            <?php if (isset($success)) {
+                                                                                echo $success;
+                                                                            }?>
                                                                             <form action="" method="POST" enctype="multipart/form-data">
 
                                                                                 <div class="mb-3">
@@ -224,7 +227,7 @@ if (isset($_POST['submit'])) {
                                                             $sql = "UPDATE teams SET name= '$name', slug='$slug', description='$description',  venue='$venue', logo='$logo', added_by='$added_by' WHERE id=$id";
                                                             $query2 = mysqli_query($con, $sql);
                                                             if ($query2) {
-                                                                $msg = "<div class='alert alert-primary shadow' role='alert' style='border-left:#155724 5px solid; border-radius: 0px'>
+                                                                $success = "<div class='alert alert-primary shadow' role='alert' style='border-left:#155724 5px solid; border-radius: 0px'>
                                                                 Success
                                                                 <script type='text/javascript'>setTimeout(function() { window.location.href = 'teams.php';}, 3000);</script>
                                                                 </div>";

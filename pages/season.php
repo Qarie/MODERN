@@ -83,10 +83,10 @@ if (isset($_POST['submit'])) {
                                         <select required id="tournament" class="form-control" name="tournament" required>
                                             <option>-- Select Tournament --</option>
                                             <?php
-                                            $leagues = mysqli_query($con, "SELECT name FROM leagues");
+                                            $leagues = mysqli_query($con, "SELECT * FROM leagues");
                                             while ($all = mysqli_fetch_array($leagues)) {
                                             ?>
-                                                <option><?= $all['name']; ?></option>
+                                                <option value="<?= $all['id']; ?>"><?= $all['name']; ?></option>
                                             <?php
                                             } ?>
                                         </select>
@@ -169,7 +169,16 @@ if (isset($_POST['submit'])) {
                                             ?>
                                                 <tr>
                                                     <td><?= $count ?></td>
-                                                    <td><?= ($row['tournament']); ?></td>
+                                                    <td>
+                                                        <?php
+                                                        $league_id = $row['tournament'];
+                                                        $leagues = mysqli_query($con, "select * from leagues where id = '$league_id'");
+                                                        foreach ($leagues as $league) :
+                                                            echo $league['name'];
+                                                        endforeach;
+
+
+                                                        ?></td>
                                                     <td><?= ($row['season']); ?></td>
                                                     <td><?= $row['rules']; ?></td>
                                                     <td>
