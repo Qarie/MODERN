@@ -215,7 +215,7 @@ if (!(isset($_SESSION["login"]) && $_SESSION["login"] == "OK")) {
                                                         <table class="table table-striped table-bordered">
                                                             <tr>
                                                                 <td>
-                                                                    <a href="add_match.php?id=<?= $row['id']; ?>" class="btn btn-success"><i class="las la-plus"></i></a>
+                                                                    <a href="add_match.php?id=<?= $row['league']; ?>" class="btn btn-success"><i class="las la-plus"></i></a>
                                                                 </td>
                                                             </tr>
                                                         </table>

@@ -79,8 +79,8 @@ $tournament = $name . "  " . $season;
 
                             <table id="example" class="table">
                                 <thead style="text-transform: uppercase; background: grey; color: white;">
-                                  
-                                <th>#</th>
+
+                                    <th></th>
                                     <th>Team</th>
 
                                     <!-- <th>ph</th> -->
@@ -110,10 +110,10 @@ $tournament = $name . "  " . $season;
                                     $count = 1;
 
                                     // $sql4 = mysqli_query($con, $sql3);
-                                    $reg_teams = mysqli_query($con, "select * from registered_teams where season = '$seasonId' and league = '$league' ORDER BY tname ASC");
+                                    $reg_teams = mysqli_query($con, "select * from registered_teams where season = '$season' and league = '$league' ORDER BY tname ASC");
                                     foreach ($reg_teams as $res) {
                                         $team = $res['id'];
-                                        
+
 
                                     ?>
 
@@ -405,31 +405,40 @@ $tournament = $name . "  " . $season;
 
 
 <script>
-    $(document).ready(function () {
-    var t = $('#example').DataTable({
-        searching: false,
-        info: false,
-        paging: false,
-        dom:"Bfrtip",buttons:["copy","csv","excel","print","pdf"],
-        columnDefs: [
-            {
+    $(document).ready(function() {
+        var t = $('#example').DataTable({
+            searching: false,
+            info: false,
+            paging: false,
+            dom: "Bfrtip",
+            buttons: ["copy", "csv", "excel", "print", "pdf"],
+            columnDefs: [{
                 searchable: false,
                 orderable: false,
                 targets: 0,
-            },
-        ],
-        order: [[ 9, 'desc' ], [ 8, 'desc' ]],
-        buttons:["copy","csv","excel","print","pdf"],
-    });
- 
-    t.on('order.dt search.dt', function () {
-        let i = 1;
- 
-        t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
-            this.data(i++);
+            }, ],
+            order: [
+                [9, 'desc'],
+                [8, 'desc']
+            ],
+            buttons: ["copy", "csv", "excel", "print", "pdf"],
+            columnDefs: [{
+                orderable: false,
+                targets: [0,1,2,3,4,5,6,7,8,9]
+            }],
         });
-    }).draw();
-});
+
+        t.on('order.dt search.dt', function() {
+            let i = 1;
+
+            t.cells(null, 0, {
+                search: 'applied',
+                order: 'applied'
+            }).every(function(cell) {
+                this.data(i++);
+            });
+        }).draw();
+    });
 </script>
 
 

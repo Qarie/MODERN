@@ -7,7 +7,7 @@ if (!(isset($_SESSION["login"]) && $_SESSION["login"] == "OK")) {
 }
 
 $id = $_GET['id'];
-$sql1 = mysqli_query($con, "select name, season, league from matchday where id=$id");
+$sql1 = mysqli_query($con, "select id, name, season, league from matchday where league =$id");
 $row1 = mysqli_fetch_array($sql1);
 
 
@@ -15,6 +15,7 @@ if (isset($_POST['submit'])) {
     $matchday = $row1['name'];
     $season = $row1['season'];
     $league = $row1['league'];
+    $matchday_id = $row1['id'];
     $home_team           = $_POST['home_team'];
     // $home_score       = $_POST['home_score'];
     // $away_score          = $_POST['away_score'];
@@ -24,7 +25,7 @@ if (isset($_POST['submit'])) {
     $time  = $_POST['time'];
     $added_by       = $_SESSION['id'];
 
-    $sql = "INSERT INTO matches (matchday_id, league,matchday, season, home_team, away_team, status, date, time, added_by) VALUES('$id', '$league', '$matchday', '$season', '$home_team', '$away_team', '$status', '$date', '$time', '$added_by' )";
+    $sql = "INSERT INTO matches (matchday_id, league,matchday, season, home_team, away_team, status, date, time, added_by) VALUES('$matchday_id', '$league', '$matchday', '$season', '$home_team', '$away_team', '$status', '$date', '$time', '$added_by' )";
     $query = mysqli_query($con, $sql);
     if ($query) {
         header("location:matches.php");
@@ -84,7 +85,8 @@ if (isset($_POST['submit'])) {
                                                     <select class="form-control" name="home_team" id="" required>
                                                         <option>-- Select --</option>
                                                         <?php
-                                                        $teams = mysqli_query($con, 'select * from registered_teams');
+                                                        $id = $_GET['id'];
+                                                        $teams = mysqli_query($con, "select * from registered_teams where league = '$id'");
                                                         foreach ($teams as $team) { ?>
                                                             <option value="<?= $team['id']; ?>"><?= $team['tname']; ?></option>
                                                         <?php
@@ -98,7 +100,7 @@ if (isset($_POST['submit'])) {
                                                     <select class="form-control" name="away_team" id="" required>
                                                         <option>-- Select --</option>
                                                         <?php
-                                                        $teams = mysqli_query($con, 'select * from registered_teams');
+                                                        $teams = mysqli_query($con, "select * from registered_teams where league = '$id'");
                                                         foreach ($teams as $team) { ?>
                                                             <option value="<?= $team['id']; ?>"><?= $team['tname']; ?></option>
                                                         <?php

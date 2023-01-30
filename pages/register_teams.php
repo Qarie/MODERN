@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
                                         $leags = mysqli_query($con, "select * from leagues");
                                         foreach ($leags as $leag) {
                                         ?>
-                                            <option value="<?= $leag['id']; ?>"><?= $leag['id']; ?></option>
+                                            <option value="<?= $leag['id']; ?>"><?= $leag['name']; ?></option>
                                         <?php } ?>
 
 
@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
                                         $seasons = mysqli_query($con, "select * from seasons");
                                         foreach ($seasons as $season) {
                                         ?>
-                                            <option value="<?= $season['id']; ?>"><?= $season['season']; ?></option>
+                                            <option ><?= $season['season']; ?></option>
                                         <?php } ?>
 
 
