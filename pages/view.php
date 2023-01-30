@@ -21,7 +21,9 @@ $tournament = $name . "  " . $season;
 ?>
 <?php include "../includes/header.php"; ?>
 <?php include "../includes/sidebar.php"; ?>
-
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"> -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <!-- Left Sidebar End -->
 <!-- Vertical Overlay-->
 <div class="vertical-overlay"></div>
@@ -75,9 +77,10 @@ $tournament = $name . "  " . $season;
                             ?>
 
 
-                            <table id="button-datatables" class="table">
+                            <table id="example" class="table">
                                 <thead style="text-transform: uppercase; background: grey; color: white;">
-
+                                  
+                                <th>#</th>
                                     <th>Team</th>
 
                                     <!-- <th>ph</th> -->
@@ -104,20 +107,20 @@ $tournament = $name . "  " . $season;
 
                                     <?php
 
-                                    $count = 0;
+                                    $count = 1;
 
                                     // $sql4 = mysqli_query($con, $sql3);
                                     $reg_teams = mysqli_query($con, "select * from registered_teams where season = '$seasonId' and league = '$league' ORDER BY tname ASC");
                                     foreach ($reg_teams as $res) {
                                         $team = $res['id'];
-                                        $count++
+                                        
 
                                     ?>
 
 
 
                                         <tr>
-                                            <!-- <td><?= $count; ?>.</td> -->
+                                            <td></td>
                                             <td style="width: 500px;">
 
                                                 <?= $res['tname']; ?></td>
@@ -399,6 +402,35 @@ $tournament = $name . "  " . $season;
 
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function () {
+    var t = $('#example').DataTable({
+        searching: false,
+        info: false,
+        paging: false,
+        dom:"Bfrtip",buttons:["copy","csv","excel","print","pdf"],
+        columnDefs: [
+            {
+                searchable: false,
+                orderable: false,
+                targets: 0,
+            },
+        ],
+        order: [[ 9, 'desc' ], [ 8, 'desc' ]],
+        buttons:["copy","csv","excel","print","pdf"],
+    });
+ 
+    t.on('order.dt search.dt', function () {
+        let i = 1;
+ 
+        t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });
+    }).draw();
+});
+</script>
 
 
 </div>
